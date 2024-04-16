@@ -37,8 +37,8 @@ pipeline:
                     image: alpinelinux/golang
                     shell: Sh
                     command: |-
-                      nohup go run main.go &
-                      curl http://localhost:8080
+                      #nohup go run main.go &
+                      #curl http://localhost:8080
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
