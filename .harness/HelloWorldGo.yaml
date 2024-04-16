@@ -39,6 +39,8 @@ pipeline:
                     command: |-
                       #nohup go run main.go &
                       #curl http://localhost:8080
+                      go mod init goHelloWorld
+                      go build
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
