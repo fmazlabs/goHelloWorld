@@ -1,0 +1,39 @@
+pipeline:
+  name: HelloWorldGo
+  identifier: HelloWorldGo
+  projectIdentifier: FM_Sandbox
+  orgIdentifier: SE_Sandbox
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: fmaz_github
+        repoName: goHelloWorld
+        build: <+input>
+  stages:
+    - stage:
+        name: BuildGo
+        identifier: BuildGo
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          infrastructure:
+            type: KubernetesDirect
+            spec:
+              connectorRef: fmk8s
+              namespace: buildfactory
+              automountServiceAccountToken: true
+              nodeSelector: {}
+              os: Linux
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run
+                  identifier: Run
+                  spec:
+                    connectorRef: dockerhubfrancislabs
+                    image: alpinelinux/golang
+                    shell: Sh
+                    command: go run main.go
