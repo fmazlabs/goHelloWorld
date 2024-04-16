@@ -37,3 +37,12 @@ pipeline:
                     image: alpinelinux/golang
                     shell: Sh
                     command: go run main.go
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: dockerhubfrancislabs
+                    repo: francislabs/helloworld
+                    tags:
+                      - latest
