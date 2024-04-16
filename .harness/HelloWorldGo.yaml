@@ -36,7 +36,9 @@ pipeline:
                     connectorRef: dockerhubfrancislabs
                     image: alpinelinux/golang
                     shell: Sh
-                    command: go run main.go
+                    command: |-
+                      nohup go run main.go &
+                      curl http://localhost:8080
               - step:
                   type: BuildAndPushDockerRegistry
                   name: BuildAndPushDockerRegistry_1
